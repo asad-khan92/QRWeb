@@ -12,5 +12,13 @@ struct Constants {
     
     struct URL {
         public static let initialURL = "https://www.google.com"
+        public static let contactPostURL = "https://boloapp.tec-inmove.com:8443/bankzilla_contact_book_native/contact/"
+    }
+    
+    struct User{
+        
+        struct Keys {
+            public static let uniqueID = "uniqueIndentifier"
+        }
     }
 }

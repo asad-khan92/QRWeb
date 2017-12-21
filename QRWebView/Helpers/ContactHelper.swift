@@ -11,15 +11,25 @@ import AddressBook
 import Contacts
 
 
-struct Contact {
+enum ContactResult {
+    case Granted([CNContact])
+    case Other(String)
+}
+class Contact {
     
-     var contactStore = CNContactStore()
-     let authorizationStatus = CNContactStore.authorizationStatus(for: .contacts)
+    var completion : ((ContactResult) -> Void)?
+    var contactStore : CNContactStore
+    var authorizationStatus : CNAuthorizationStatus
     
+    public init(){
+         contactStore = CNContactStore()
+         authorizationStatus = CNContactStore.authorizationStatus(for: .contacts)
+    }
     
-    func checkIfAllowed()-> Bool{
+  
+    func getAllContacts(completionHandler:@escaping (ContactResult) -> Void)  {
         
-        
+         completion = completionHandler
         switch authorizationStatus {
         case .denied, .restricted,.notDetermined:
             //1
@@ -32,7 +42,7 @@ struct Contact {
                 else {
                     if self.authorizationStatus == CNAuthorizationStatus.denied {
                         DispatchQueue.main.async {
-                           let message = "\(accessError!.localizedDescription)\n\nPlease allow the app to access your contacts through the Settings."
+                            let message = "\(accessError!.localizedDescription)\n\nPlease allow the app to access your contacts through the Settings."
                             
                             print(message)
                         }
@@ -41,20 +51,13 @@ struct Contact {
                 }
                 
             }
-                
+            
         case .authorized:
             //2
             print("Authorized")
             retrieveContactsWithStore(store: contactStore)
-            return true
+            
         }
-        
-        return false
-    }
-    func getAllContacts()  {
-        
-         let _ = checkIfAllowed()
-        //retrieveContactsWithStore(store: contactStore)
         
     }
     
@@ -72,7 +75,7 @@ struct Contact {
                 }
                 
                 if contact.isKeyAvailable(CNContactImageDataKey) {
-                    if let contactImageData = contact.imageData {
+                    if contact.imageData != nil {
                       //  print(UIImage(data: contactImageData)) // Print the image set on the contact
                     }
                 } else {
@@ -87,7 +90,7 @@ struct Contact {
         } catch let error {
             NSLog("Fetch contact error: \(error)")
         }
-        
+        completion?(.Granted(cnContacts))
         NSLog(">>>> Contact list:")
         for contact in cnContacts {
             let fullName = CNContactFormatter.string(from: contact, style: .fullName) ?? "No Name"

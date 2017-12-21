@@ -14,6 +14,14 @@
 		05CADDD01FE16E3700039B9A /* QRWebViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CADDCF1FE16E3700039B9A /* QRWebViewTests.swift */; };
 		05CADDDE1FE178EC00039B9A /* GlobalConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CADDDD1FE178EC00039B9A /* GlobalConstant.swift */; };
 		05CADDDF1FE178EC00039B9A /* GlobalConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CADDDD1FE178EC00039B9A /* GlobalConstant.swift */; };
+		05F4D2BB1FE90DE700D4E4FF /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4D2BA1FE90DE700D4E4FF /* APICaller.swift */; };
+		05F4D2BC1FE90DE700D4E4FF /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4D2BA1FE90DE700D4E4FF /* APICaller.swift */; };
+		05F4D2BE1FE9340100D4E4FF /* URLRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4D2BD1FE9340100D4E4FF /* URLRequestExtension.swift */; };
+		05F4D2BF1FE9340100D4E4FF /* URLRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4D2BD1FE9340100D4E4FF /* URLRequestExtension.swift */; };
+		05F4D2C21FE94BE800D4E4FF /* ContactJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4D2C11FE94BE800D4E4FF /* ContactJSON.swift */; };
+		05F4D2C31FE94BE800D4E4FF /* ContactJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4D2C11FE94BE800D4E4FF /* ContactJSON.swift */; };
+		05F4D2C61FE94FC300D4E4FF /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4D2C51FE94FC300D4E4FF /* ArrayExtension.swift */; };
+		05F4D2C71FE94FC300D4E4FF /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4D2C51FE94FC300D4E4FF /* ArrayExtension.swift */; };
 		05F90E611FE26CC300D476CD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F90E5F1FE26CC300D476CD /* WebViewController.swift */; };
 		05F90E621FE26CC300D476CD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F90E5F1FE26CC300D476CD /* WebViewController.swift */; };
 		05F90E631FE26CC300D476CD /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F90E601FE26CC300D476CD /* QRScannerController.swift */; };
@@ -43,6 +51,10 @@
 		05CADDCF1FE16E3700039B9A /* QRWebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRWebViewTests.swift; sourceTree = "<group>"; };
 		05CADDD11FE16E3700039B9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CADDDD1FE178EC00039B9A /* GlobalConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstant.swift; sourceTree = "<group>"; };
+		05F4D2BA1FE90DE700D4E4FF /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		05F4D2BD1FE9340100D4E4FF /* URLRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtension.swift; sourceTree = "<group>"; };
+		05F4D2C11FE94BE800D4E4FF /* ContactJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactJSON.swift; sourceTree = "<group>"; };
+		05F4D2C51FE94FC300D4E4FF /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		05F90E5F1FE26CC300D476CD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		05F90E601FE26CC300D476CD /* QRScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
 		05F90E671FE290CD00D476CD /* ContactHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactHelper.swift; sourceTree = "<group>"; };
@@ -87,6 +99,9 @@
 		05CADDB91FE16E3700039B9A /* QRWebView */ = {
 			isa = PBXGroup;
 			children = (
+				05F4D2C81FE9590300D4E4FF /* Constants */,
+				05F4D2C41FE94F8800D4E4FF /* Extensions */,
+				05F4D2C01FE94BCB00D4E4FF /* Model */,
 				05F90E661FE290B200D476CD /* Helpers */,
 				05F90E651FE26CC600D476CD /* Controllers */,
 				05CADDBA1FE16E3700039B9A /* AppDelegate.swift */,
@@ -94,7 +109,6 @@
 				05CADDC11FE16E3700039B9A /* Assets.xcassets */,
 				05CADDC31FE16E3700039B9A /* LaunchScreen.storyboard */,
 				05CADDC61FE16E3700039B9A /* Info.plist */,
-				05CADDDD1FE178EC00039B9A /* GlobalConstant.swift */,
 			);
 			path = QRWebView;
 			sourceTree = "<group>";
@@ -106,6 +120,30 @@
 				05CADDD11FE16E3700039B9A /* Info.plist */,
 			);
 			path = QRWebViewTests;
+			sourceTree = "<group>";
+		};
+		05F4D2C01FE94BCB00D4E4FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				05F4D2C11FE94BE800D4E4FF /* ContactJSON.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		05F4D2C41FE94F8800D4E4FF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				05F4D2C51FE94FC300D4E4FF /* ArrayExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		05F4D2C81FE9590300D4E4FF /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				05CADDDD1FE178EC00039B9A /* GlobalConstant.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		05F90E651FE26CC600D476CD /* Controllers */ = {
@@ -121,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				05F90E671FE290CD00D476CD /* ContactHelper.swift */,
+				05F4D2BA1FE90DE700D4E4FF /* APICaller.swift */,
+				05F4D2BD1FE9340100D4E4FF /* URLRequestExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -229,8 +269,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				05CADDBB1FE16E3700039B9A /* AppDelegate.swift in Sources */,
+				05F4D2BB1FE90DE700D4E4FF /* APICaller.swift in Sources */,
+				05F4D2C21FE94BE800D4E4FF /* ContactJSON.swift in Sources */,
+				05F4D2C61FE94FC300D4E4FF /* ArrayExtension.swift in Sources */,
 				05F90E631FE26CC300D476CD /* QRScannerController.swift in Sources */,
 				05F90E611FE26CC300D476CD /* WebViewController.swift in Sources */,
+				05F4D2BE1FE9340100D4E4FF /* URLRequestExtension.swift in Sources */,
 				05CADDDE1FE178EC00039B9A /* GlobalConstant.swift in Sources */,
 				05F90E681FE290CD00D476CD /* ContactHelper.swift in Sources */,
 			);
@@ -241,8 +285,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				05CADDDF1FE178EC00039B9A /* GlobalConstant.swift in Sources */,
+				05F4D2BC1FE90DE700D4E4FF /* APICaller.swift in Sources */,
+				05F4D2C31FE94BE800D4E4FF /* ContactJSON.swift in Sources */,
+				05F4D2C71FE94FC300D4E4FF /* ArrayExtension.swift in Sources */,
 				05F90E641FE26CC300D476CD /* QRScannerController.swift in Sources */,
 				05F90E621FE26CC300D476CD /* WebViewController.swift in Sources */,
+				05F4D2BF1FE9340100D4E4FF /* URLRequestExtension.swift in Sources */,
 				05CADDD01FE16E3700039B9A /* QRWebViewTests.swift in Sources */,
 				05F90E691FE290CD00D476CD /* ContactHelper.swift in Sources */,
 			);
@@ -397,7 +445,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Attribe.QRWebView.edgar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -413,7 +461,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Attribe.QRWebView.edgar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

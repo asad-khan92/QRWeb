@@ -29,11 +29,12 @@ class QRScannerController: UIViewController, AVCaptureMetadataOutputObjectsDeleg
         
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video
         // as the media type parameter.
-        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        let captureDeviceCamera = AVCaptureDevice.default(for: AVMediaType.video)
         
+        if let captureDevice = captureDeviceCamera{
         do {
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
-            let input = try AVCaptureDeviceInput(device: captureDevice!)
+            let input = try AVCaptureDeviceInput(device: captureDevice)
             
             // Initialize the captureSession object.
             captureSession = AVCaptureSession()
@@ -72,14 +73,40 @@ class QRScannerController: UIViewController, AVCaptureMetadataOutputObjectsDeleg
                 view.bringSubview(toFront: qrCodeFrameView)
             }
             
+       
         } catch {
+                // If any error occurs, simply print it out and don't continue any more.
+           
+                print(error)
+            
+            
+                let alert = UIAlertController.init(title: "Permission Error", message: "please provide camera permission to scan QR code", preferredStyle: .alert)
+            
+                alert.addAction(UIAlertAction.init(title: "OK", style: .cancel, handler: nil))
+            
+                present(alert, animated: true, completion: nil)
+          
+            
+        
+            }
+    
+        }else{
             // If any error occurs, simply print it out and don't continue any more.
-            print(error)
-            return
+
+            let alert = UIAlertController.init(title: "Device Error", message: "could not unable to detect camera", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction.init(title: "OK", style: .cancel, handler: nil))
+            
+            present(alert, animated: true, completion: nil)
         }
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -108,7 +135,17 @@ class QRScannerController: UIViewController, AVCaptureMetadataOutputObjectsDeleg
             if metadataObj.stringValue != nil {
                 self.navigationController?.popViewController(animated: true)
                 if delegate != nil{
-                    delegate.loadQR(url:metadataObj.stringValue!)
+                        guard let urlString = metadataObj.stringValue,
+                            let url = URL(string: urlString) else {
+                                return
+                        }
+                        
+                    if UIApplication.shared.canOpenURL(url){
+                        
+                        delegate.loadQR(url: metadataObj.stringValue!)
+                    }
+                    
+                    
                 }
                 messageLabel.text = metadataObj.stringValue
             }

